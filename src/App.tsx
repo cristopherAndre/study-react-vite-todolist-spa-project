@@ -7,6 +7,7 @@ import PlusIcon from "./assets/icons/plus.svg?react";
 import SpinnerIcon from "./assets/icons/spinner.svg?react";
 import Icon from './components/icon';
 import Badge from './components/badge';
+import Button from './components/button';
 
 export default function App() {
 
@@ -31,11 +32,17 @@ export default function App() {
                 <Icon svg={XIcon} />           
                 <Icon svg={SpinnerIcon} animate />
                 <Icon svg={SpinnerIcon} animate={true} />
-                <Icon svg={SpinnerIcon} animate={false} />                     
-
+                <Icon svg={SpinnerIcon} animate={false} />                                                    
+            </div>
+            <div className="flex gap-1">
                 <Badge>5</Badge>
                 <Badge variant="secondary">2 de 5</Badge>
+            </div>
 
+            <div className="flex gap-1">                
+                <Button>Salvar</Button>                
+                <Button variant="primary" size="md" icon={PlusIcon}>Adicionar</Button>
+                <Button disabled>Edit</Button>
             </div>
 
         </div>
