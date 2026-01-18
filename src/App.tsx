@@ -8,13 +8,14 @@ import SpinnerIcon from "./assets/icons/spinner.svg?react";
 import Icon from './components/icon';
 import Badge from './components/badge';
 import Button from './components/button';
+import ButtonIcon from './components/button-icon';
 
 export default function App() {
 
     return (
 
         <div className="grid gap-3">
-        
+
             <div className="flex flex-col gap-2">
                 <Text variant="body-sm-bold" className="text-pink-base"> Hello, Worlds!</Text>
 
@@ -29,21 +30,34 @@ export default function App() {
                 <Icon svg={CheckIcon} />
                 <Icon svg={PlusIcon} />
                 <Icon svg={PencilIcon} />
-                <Icon svg={XIcon} />           
+                <Icon svg={XIcon} />
                 <Icon svg={SpinnerIcon} animate />
                 <Icon svg={SpinnerIcon} animate={true} />
-                <Icon svg={SpinnerIcon} animate={false} />                                                    
+                <Icon svg={SpinnerIcon} animate={false} />
             </div>
             <div className="flex gap-1">
                 <Badge>5</Badge>
                 <Badge variant="secondary">2 de 5</Badge>
             </div>
 
-            <div className="flex gap-1">                
-                <Button>Salvar</Button>                
+            <div className="flex gap-1">
+                <Button>Salvar</Button>
                 <Button variant="primary" size="md" icon={PlusIcon}>Adicionar</Button>
                 <Button disabled>Edit</Button>
             </div>
+
+            <div className="flex gap-1">
+                <ButtonIcon icon={TrashIcon} />
+                <ButtonIcon icon={TrashIcon} disabled />
+                
+                <ButtonIcon icon={TrashIcon} variant="secondary" disabled/>
+                <ButtonIcon icon={TrashIcon} variant="secondary" />
+
+                <ButtonIcon icon={TrashIcon} variant="tertiary" disabled/>
+                <ButtonIcon icon={TrashIcon} variant="tertiary" />
+            </div>
+
+
 
         </div>
 
