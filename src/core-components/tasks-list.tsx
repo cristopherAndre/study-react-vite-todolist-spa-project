@@ -9,9 +9,6 @@ import { TaskState } from "../models/task";
 export default function TasksList() {
 
     const { tasks } = useTasks();
-
-    console.log(tasks);
-
     const { prepareTask } = useTask();
 
     function handleNewTask() {
