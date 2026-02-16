@@ -20,13 +20,16 @@ interface TaskItemProps {
 export default function TaskItem({ task }: TaskItemProps) {
     const [isEditing, setIsEditing] = React.useState(task?.state === TaskState.Creating);
     const [taskTitle, setTaskTitle] = React.useState(task?.title) || "";
-    const {updateTask, updateTaskStatus} = useTask();
+    const { updateTask, updateTaskStatus, deleteTask } = useTask();
 
     function handleEditTask() {
         setIsEditing(true);
     }
 
     function handleExitEditTask() {
+        if (task.state === TaskState.Creating) {
+            deleteTask(task.id);
+        }
         setIsEditing(false);
     }
 
@@ -37,13 +40,17 @@ export default function TaskItem({ task }: TaskItemProps) {
 
     function handleSaveTask(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
-        updateTask(task.id, {title: taskTitle || ""});
+        updateTask(task.id, { title: taskTitle || "" });
         setIsEditing(false);
     }
 
     function handleChangeTaskStatus(e: React.ChangeEvent<HTMLInputElement>) {
         const checked = e.target.checked;
         updateTaskStatus(task.id, checked);
+    }
+
+    function handleDeleteTask() {
+        deleteTask(task.id);
     }
 
     return (
@@ -60,7 +67,10 @@ export default function TaskItem({ task }: TaskItemProps) {
                         {task?.title}
                     </Text>
                     <div className="flex gap-1">
-                        <ButtonIcon icon={TrashIcon} variant="tertiary" />
+                        <ButtonIcon
+                            onClick={handleDeleteTask}
+                            icon={TrashIcon}
+                            variant="tertiary" />
                         <ButtonIcon
                             icon={PencilIcon}
                             variant="tertiary"
@@ -70,12 +80,12 @@ export default function TaskItem({ task }: TaskItemProps) {
                 </div>
             ) : (
                 <form onSubmit={handleSaveTask} className="flex items-center gap-4">
-                    <InputText 
+                    <InputText
                         value={taskTitle}
-                        className="flex-1" 
-                        onChange={handleChangeTaskTitle} 
-                        required 
-                        autoFocus/>
+                        className="flex-1"
+                        onChange={handleChangeTaskTitle}
+                        required
+                        autoFocus />
                     <div className="flex gap-1">
                         <ButtonIcon
                             icon={XIcon}
