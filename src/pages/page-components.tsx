@@ -56,6 +56,8 @@ export default function PageComponents() {
                     <Button>Salvar</Button>
                     <Button variant="primary" size="md" icon={PlusIcon}>Adicionar</Button>
                     <Button disabled>Edit</Button>
+
+                    <Button icon={PlusIcon} handling>Salvando</Button>
                 </div>
 
                 <div className="flex gap-1">
@@ -69,6 +71,7 @@ export default function PageComponents() {
                     <ButtonIcon icon={TrashIcon} variant="tertiary" />
 
                     <ButtonIcon icon={TrashIcon} loading />
+                    <ButtonIcon icon={TrashIcon} handling />
                 </div>
 
                 <div>
